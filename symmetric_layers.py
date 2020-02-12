@@ -396,13 +396,13 @@ class SymmetricConv2DTranspose(SymmetricConv2D):
         out_height = conv_utils.deconv_output_length(height,
                                                      kernel_h,
                                                      padding=self.padding,
-                                                     output_padding=out_pad_h,
+                                                     # output_padding=out_pad_h,
                                                      stride=stride_h,
                                                      dilation=self.dilation_rate[0])
         out_width = conv_utils.deconv_output_length(width,
                                                     kernel_w,
                                                     padding=self.padding,
-                                                    output_padding=out_pad_w,
+                                                    # output_padding=out_pad_w,
                                                     stride=stride_w,
                                                     dilation=self.dilation_rate[1])
         if self.data_format == 'channels_first':
