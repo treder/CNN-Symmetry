@@ -1,25 +1,20 @@
-# Symmetric layers for Tensorflow 1.X:
-# - SymmetricConv2D: extension of Conv2D that adds weight sharing between pairs of
-#                    filters (horizontal or vertical reflection symmetry)
-# - SymmetricConv2DTranspose: symmetric extension of Conv2DTranspose
+'''Symmetric convolution layers for Tensorflow 1
 
-# (c) matthias treder 2020
+This module provides two layers that can be used in 2D Convolutional Neural Networks. 
+SymmetricConv2D provides an extension of Conv2D that adds weight sharing between pairs of
+filters (horizontal or vertical reflection symmetry). SymmetricConv2DTranspose provides a symmetric 
+extension of Conv2DTranspose.
 
-import numpy as np
-import re, math
+List of classes:
+- SymmetricConv2D
+- SymmetricConv2DTranspose
 
-import tensorflow as tf
+'''
+# (c) matthias treder
+import torch.nn as nn
 
-from tensorflow.python.framework import tensor_shape
-from tensorflow.keras import models, layers, Model
-from tensorflow.keras.layers import Layer, Input, Conv2DTranspose
-from tensorflow.python.keras import backend
-from tensorflow.python.ops import array_ops
-from tensorflow.python.ops import nn
-from tensorflow.python.ops import nn_ops
-from tensorflow.python.keras.utils import conv_utils
 
-class SymmetricConv2D(layers.Conv2D):
+class SymmetricConv2D(nn.Conv2d):
 
     def __init__(self, filters, kernel_size,  symmetry={}, share_bias=True, **kwargs):
         '''
