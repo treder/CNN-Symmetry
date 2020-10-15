@@ -35,6 +35,7 @@ We then say these filters come in a (horizontally or vertically symmetrc) pair. 
 The Python file `custom_layers_torch.py` provides symmetric convolutional layers for 2-D and 3-D convolutions. Both layers extend the Pytorch layers `torch.nn.Conv2d` and `torch.nn.Conv3d` and can be used as drop-in replacements for these layers. Consider the following simple CNN with three convolutional layers:
 
 ```python
+import torch.nn as nn
 class CNN_2D(nn.Module):
 
     def __init__(self):
@@ -56,6 +57,7 @@ class CNN_2D(nn.Module):
 Assume we want to replace the first convolutional layer with a symmetric layer.
 
 ```python
+import torch.nn as nn
 from symmetric_layers_torch import SymmetricConv2d, SymmetricConv3d
 
 class CNN_2D(nn.Module):
